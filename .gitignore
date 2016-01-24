@@ -2,3 +2,6 @@
 *.pyc
 *__pycache__
 checkpoints/*
+test/*.csv
+train/*.csv
+raw/*.csv

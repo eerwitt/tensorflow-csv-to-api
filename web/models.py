@@ -1,5 +1,26 @@
+"""
+Objects which describe data which the API responds with. This was developed
+based on the Swagger definitions found at:
+    ./swagger.json or ./swagger.yml
+"""
+
+
 class Iris(object):
+    """
+    See ./swagger.json#models for further information.
+    """
     def __init__(self, species=None, features=None):
+        """
+        Create a new Iris model.
+
+        Parameters
+        ----------
+        species : str, optional
+            The species of the Iris if it's known. When requesting a prediction
+            for an unknown Iris species this value will be None.
+        features : list(float[4]), optional
+            Known features for this Iris to classify a species for.
+        """
         self.species = species
 
         if features is not None:
@@ -40,6 +61,9 @@ class Iris(object):
 
 
 class Prediction(object):
+    """
+    See ./swagger.json#models for further information.
+    """
     def __init__(self, iris, y):
         self._iris = iris
         self._y = y
@@ -60,6 +84,9 @@ class Prediction(object):
 
 
 class PredictionRequest(object):
+    """
+    See ./swagger.json#models for further information.
+    """
     def __init__(self, iris_features):
         self._uuid = None
         self._prediction = None

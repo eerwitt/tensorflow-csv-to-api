@@ -13,7 +13,7 @@
     ],
     "externalDocs": {
         "description": "Tutorial this API was created based on.",
-        "url": "http://eerwitt.github.io"
+        "url": "https://eerwitt.github.io/2016/01/14/tensorflow-from-csv-to-api/"
     },
     "info": {
         "version": "0.0.1a",
@@ -22,17 +22,15 @@
         "termsOfService": "None",
         "contact": {
             "name": "Erik",
-            "url": "eerwitt.github.io"
+            "url": "https://eerwitt.github.io"
         },
         "license": {
-            "name": "None",
-            "url": "NA"
+            "name": "Beerware",
+            "url": "https://en.wikipedia.org/wiki/Beerware"
         }
     },
     "definitions": {
         "UnknownIris": {
-            "type": "object",
-            "description": "Iris with features but no species to match against.",
             "$ref": "#/definitions/Iris"
         },
         "Iris": {
@@ -111,7 +109,6 @@
                 },
                 "iris_features": {
                     "description": "An Iris with no class but petal and sepal information filled out.\n",
-                    "required": true,
                     "$ref": "#/definitions/Iris"
                 }
             }
