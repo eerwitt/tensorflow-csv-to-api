@@ -1,0 +1,12 @@
+# By default I'm using python3 version of tensorflow.
+https://storage.googleapis.com/tensorflow/mac/tensorflow-0.6.0-py3-none-any.whl
+# https://storage.googleapis.com/tensorflow/mac/tensorflow-0.6.0-py2-none-any.whl
+
+# Used to download the iris dataset
+requests
+tqdm
+
+# Used by the REST API
+falcon
+gunicorn
+simplejson
