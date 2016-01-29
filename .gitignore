@@ -5,3 +5,4 @@ checkpoints/*
 test/*.csv
 train/*.csv
 raw/*.csv
+.DS_Store
