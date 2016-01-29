@@ -8,11 +8,14 @@ from tqdm import tqdm
 
 from collections import OrderedDict
 
+from iris import log
+
 """
 Work with downloading the original Iris dataset and convert the CSV into the
 fields our model expects to parse.
 """
 
+_logger = log.get_logger()
 
 _MAIN_IRIS_DATA_URL = \
     "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
@@ -51,12 +54,14 @@ def parse_raw_iris_csv(raw_csv_filename):
     row : dict
         Each row of the CSV with keys which match _SEPAL_CSV_FIELDNAMES.
     """
+    _logger.info("Opening raw CSV file %s.", raw_csv_filename)
     with open(raw_csv_filename, "r") as raw_csv_file:
         reader = csv.DictReader(
             raw_csv_file,
             fieldnames=_SEPAL_CSV_FIELDNAMES)
 
         for row in reader:
+            _logger.debug("Raw Row: %s", row)
             yield row
 
 
@@ -92,10 +97,14 @@ def download_iris_data(output_location, use_backup_iris_data_url):
         ol=output_location)
 
     if os.path.exists(output_filename):
+        _logger.info("Downloaded files already exist, skipping download.")
         return output_filename, False
+
+    _logger.info("Downloading files to %s", output_filename)
 
     url = _MAIN_IRIS_DATA_URL
     if use_backup_iris_data_url:
+        _logger.debug("Using backup URL.")
         url = _BACKUP_IRIS_DATA_URL
 
     iris_data_response = requests.get(url, stream=True)
@@ -103,6 +112,7 @@ def download_iris_data(output_location, use_backup_iris_data_url):
         for block in tqdm(iris_data_response.iter_content()):
             iris_data_output.write(block)
 
+    _logger.debug("Finished downloading new Iris data.")
     return output_filename, True
 
 
